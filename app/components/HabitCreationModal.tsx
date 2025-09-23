@@ -38,18 +38,18 @@ const HABIT_ICONS = [
 	"🎵",
 	"🍎",
 ];
-// const HABIT_COLORS = [
-// 	"hsl(var(--primary))",
-// 	"hsl(var(--secondary))",
-// 	"hsl(var(--success))",
-// 	"hsl(var(--warning))",
-// ];
-const HABIT_CATEGORIES = [
+type HabitCategory = {
+	value: "health" | "fitness" | "wellness" | "productivity";
+	label: string;
+};
+
+export const HABIT_CATEGORIES: HabitCategory[] = [
 	{ value: "health", label: "Health" },
 	{ value: "fitness", label: "Fitness" },
 	{ value: "wellness", label: "Wellness" },
 	{ value: "productivity", label: "Productivity" },
 ];
+export type HabitCategoryValue = HabitCategory["value"];
 
 export const HabitCreationModal = ({
 	isOpen,
@@ -61,9 +61,7 @@ export const HabitCreationModal = ({
 	const [color, setColor] = useState("hsl(var(--primary))");
 	const [unit, setUnit] = useState("times");
 	const [target, setTarget] = useState(1);
-	const [category, setCategory] = useState<
-		"health" | "fitness" | "wellness" | "productivity"
-	>("health");
+	const [category, setCategory] = useState<HabitCategoryValue>("health");
 
 	const handleSave = () => {
 		if (!name.trim()) return;
@@ -153,7 +151,9 @@ export const HabitCreationModal = ({
 								<Label className="font-medium">Category</Label>
 								<Select
 									value={category}
-									onValueChange={(value: any) => setCategory(value)}
+									onValueChange={(value: HabitCategoryValue) =>
+										setCategory(value)
+									}
 								>
 									<SelectTrigger
 										className="
