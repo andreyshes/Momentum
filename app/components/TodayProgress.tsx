@@ -20,13 +20,12 @@ export const TodayProgress = ({
 		<motion.div
 			initial={{ opacity: 0, y: 20 }}
 			animate={{ opacity: 1, y: 0 }}
-			// Use CSS variables for background, foreground, and border so it follows global theme.
 			className={`bg-[color:var(--background)] text-[color:var(--foreground)] border border-[color:var(--foreground)]/20 rounded-3xl p-8 shadow-lg font-sans ${className}`}
 		>
 			{/* Header */}
 			<div className="flex items-center justify-between mb-6">
 				<h3 className="text-xl md:text-2xl font-semibold tracking-tight">
-					Today's Progress
+					Today&apos;s Progress
 				</h3>
 				<motion.div
 					animate={{ rotate: [0, 15, -15, 0] }}
