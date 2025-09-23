@@ -138,7 +138,7 @@ export const HabitLogModal = ({
 									autoFocus
 								/>
 								<div className="flex justify-between mt-2 text-xs opacity-70">
-									<span>Today's Progress</span>
+									<span>Today&apos;s Progress</span>
 									<span
 										className={`font-medium ${
 											progressPercent >= 100
