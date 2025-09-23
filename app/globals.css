@@ -1,26 +1,106 @@
 @import "tailwindcss";
 
+/* ----------  Light theme defaults  ---------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--background: #ffffff;
+	--foreground: #171717;
+
+	/* convenience aliases */
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ----------  Dark theme overrides  ---------- */
+/* These values activate when DarkModeToggle adds `dark` to <html> */
+.dark {
+	--background: #0a0a0a; /* page background */
+	--foreground: #ededed; /* main text color */
+
+	/* optional darker neutrals if you use them elsewhere */
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* ----------  Base styles  ---------- */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+	background: var(--background);
+	color: var(--foreground);
+	font-family: var(--font-sans, Arial, Helvetica, sans-serif);
+}
+body {
+	background: radial-gradient(
+		ellipse at top,
+		hsl(260 80% 20%) 0%,
+		hsl(220 40% 10%) 100%
+	);
+	background-attachment: fixed;
+}
+.dark body {
+	background: radial-gradient(
+		ellipse at top,
+		hsl(220 30% 5%) 0%,
+		hsl(240 20% 2%) 100%
+	);
+}
+
+/* Keep any existing animations */
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+:root {
+	--border: rgba(23, 23, 23, 0.15);
+}
+.dark {
+	--border: rgba(237, 237, 237, 0.15);
+}
+@keyframes shimmer {
+	0% {
+		background-position: -200% 0;
+	}
+	100% {
+		background-position: 200% 0;
+	}
+}
+@keyframes gradientShift {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+.animate-gradientShift {
+	background-size: 200% 200%;
+	animation: gradientShift 6s ease infinite;
+}
+.gradient-border {
+	background: linear-gradient(90deg, #a855f7, #ec4899, #f97316);
+	background-size: 300% 300%;
+	animation: gradientMove 5s ease infinite;
+}
+@keyframes gradientMove {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
