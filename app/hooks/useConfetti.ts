@@ -1,16 +1,15 @@
 import { useCallback } from "react";
-import confetti from "canvas-confetti";
+import confetti, { Options } from "canvas-confetti";
 
 export const useConfetti = () => {
 	const celebrate = useCallback(() => {
-		// Burst of confetti from multiple directions
 		const count = 200;
-		const defaults = {
+		const defaults: Options = {
 			origin: { y: 0.7 },
 			zIndex: 9999,
 		};
 
-		function fire(particleRatio: number, opts: any) {
+		function fire(particleRatio: number, opts: Options) {
 			confetti({
 				...defaults,
 				...opts,
@@ -60,9 +59,8 @@ export const useConfetti = () => {
 		(milestone: string) => {
 			celebrate();
 
-			// Show milestone notification
 			if ("Notification" in window && Notification.permission === "granted") {
-				new Notification(`🎉 Milestone Achieved!`, {
+				new Notification("🎉 Milestone Achieved!", {
 					body: milestone,
 					icon: "/favicon.ico",
 				});
